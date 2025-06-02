@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-node
-        image: gcr.io/YOUR_PROJECT_ID/hello-node:latest
+        image: gcr.io/glossy-premise-461511-t3/project-hello:latest
         ports:
         - containerPort: 3000
 ---
@@ -30,3 +30,4 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 3000
+    nodePort: 32590
