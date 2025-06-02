@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         REPO = 'https://github.com/thej950/Project-Hello.git'
-        GCP_PROJECT_ID = 'your-gcp-project-id'     // Replace with your actual project ID
+        GCP_PROJECT_ID = 'glossy-premise-461511-t3'    
         IMAGE_NAME = "gcr.io/${GCP_PROJECT_ID}/project-hello"
     }
     stages {
@@ -17,6 +17,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t "$IMAGE_NAME" .'
+            }
+        }
+        stage ('push to GCR') {
+            steps {
+                sh '''
+                    gcloud auth configure-docker --quiet
+                    docker push $IMAGE_NAME
+                '''
             }
         }
     }
