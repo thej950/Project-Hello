@@ -13,18 +13,28 @@ pipeline {
                 git url: "${REPO}", branch: 'main'
             }
         }
-
+        // add jenkins user into docker group 
+        // restart Jenkins-VM 
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t "$IMAGE_NAME" .'
             }
         }
+        // Here authenticate ggogle 
+        // create service account with admin privilleges to artifactory registry 
+        //attch to Jenkins-VM 
         stage ('push to GCR') {
             steps {
                 sh '''
                     gcloud auth configure-docker --quiet
                     docker push $IMAGE_NAME
                 '''
+            }
+        }
+        // Below command is important to remove old images
+        stage ('Remove docker images') {
+            steps {
+                sh 'docker system prune -af'
             }
         }
     }
