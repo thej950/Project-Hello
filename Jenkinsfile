@@ -64,5 +64,5 @@ pipeline {
 //         failure {
 //             echo "Something went wrong during deployment!"
 //         }
-//     }
-// }
+    }
+}
