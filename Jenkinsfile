@@ -8,7 +8,7 @@ pipeline {
             steps {
                 cleanWs()
                 echo "Workspace cleaned. Build number: $BUILD_NUMBER"
-                git url: "${REPO}"
+                git url: "${REPO}", branch: 'main'
             }
         }
     }
