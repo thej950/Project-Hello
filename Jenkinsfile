@@ -2,13 +2,13 @@
 pipeline {
     agent any
 
-    environment {
-        GCP_PROJECT = 'your-gcp-project-id'
-        IMAGE_NAME = "gcr.io/${GCP_PROJECT}/hello-node"
-        GCP_CREDENTIALS = 'gcp-creds'
-        CLUSTER_NAME = 'hello-cluster'
-        CLUSTER_ZONE = 'us-central1-a'
-    }
+    // environment {
+    //     GCP_PROJECT = 'your-gcp-project-id'
+    //     IMAGE_NAME = "gcr.io/${GCP_PROJECT}/hello-node"
+    //     GCP_CREDENTIALS = 'gcp-creds'
+    //     CLUSTER_NAME = 'hello-cluster'
+    //     CLUSTER_ZONE = 'us-central1-a'
+    // }
 
     stages {
         stage('Checkout') {
