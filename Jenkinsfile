@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/hello-node.git'
+                git 'https://github.com/thej950/Project-Hello.git'
                 sh 'ls -la'
             }
         }
