@@ -1,9 +1,14 @@
 pipeline {
     agent any
+    environment {
+        REPO = 'https://github.com/thej950/Project-Hello.git'
+    }
     stages {
-        stage("checkout") {
+        stage('Checkout') {
             steps {
-                echo "Hello world"
+                cleanWs()
+                echo "Workspace cleaned. Build number: $BUILD_NUMBER"
+                git url: "${REPO}"
             }
         }
     }
