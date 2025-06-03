@@ -1,0 +1,73 @@
+---
+- name: Install Java, Jenkins, kubectl, Docker, and configure Jenkins user
+  hosts: localhost
+  become: yes
+  connection: local
+  tasks:
+  
+  - name: Ensure /etc/apt/keyrings directory exists
+    file:
+      path: /etc/apt/keyrings
+      state: directory
+      mode: '0755'
+
+  - name: Download Jenkins GPG key
+    get_url:
+      url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+      dest: /etc/apt/keyrings/jenkins-keyring.asc
+      mode: '0644'
+
+  - name: Add Jenkins APT repository
+    copy:
+      dest: /etc/apt/sources.list.d/jenkins.list
+      content: |
+        deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/
+      mode: '0644'
+
+  - name: Update APT cache
+    apt:
+      update_cache: yes
+
+  - name: Install required packages
+    apt:
+      name:
+        - openjdk-17-jdk
+        - curl
+        - jenkins
+      state: present
+
+  - name: Download latest stable kubectl
+    shell: |
+      curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    args:
+      chdir: /tmp
+      creates: /tmp/kubectl
+
+  - name: Install kubectl to /usr/local/bin
+    copy:
+      src: /tmp/kubectl
+      dest: /usr/local/bin/kubectl
+      mode: '0755'
+      owner: root
+      group: root
+
+  - name: Download Docker install script
+    get_url:
+      url: https://get.docker.com
+      dest: /tmp/install-docker.sh
+      mode: '0755'
+
+  - name: Run Docker install script
+    command: sh /tmp/install-docker.sh
+    args:
+      creates: /usr/bin/docker
+
+  - name: Add jenkins user to docker group
+    user:
+      name: jenkins
+      groups: docker
+      append: yes
+
+  - name: Refresh group membership for Jenkins (requires relogin or service restart)
+    debug:
+      msg: "To apply group changes for 'jenkins', you may need to restart the Jenkins service or relogin."

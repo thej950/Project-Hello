@@ -1,15 +1,16 @@
 pipeline {
     agent any
+    // defining environment variables 
     environment {
         REPO = 'https://github.com/thej950/Project-Hello.git'
-        GCP_PROJECT_ID = 'glossy-premise-461511-t3'    
-        IMAGE_NAME = "gcr.io/${GCP_PROJECT_ID}/project-hello"
+        GCP_PROJECT_ID = 'glossy-premise-461511-t3'    // project id in GCP account 
+        IMAGE_NAME = "gcr.io/${GCP_PROJECT_ID}/project-hello" //Image name 
     }
     stages {
         stage('Checkout') {
             steps {
-                cleanWs()
-                echo "Workspace cleaned. Build number: $BUILD_NUMBER"
+                cleanWs() // it will clean workspace every new build
+                echo "Workspace cleaned. Build number: $BUILD_NUMBER" //pre-defined variables 
                 git url: "${REPO}", branch: 'main'
             }
         }
@@ -31,7 +32,7 @@ pipeline {
                 '''
             }
         }
-        // Below command is important to remove old images
+        // Below step is important to remove old images
         stage ('Remove docker images') {
             steps {
                 sh 'docker system prune -af'
