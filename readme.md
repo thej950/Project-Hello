@@ -38,5 +38,7 @@
 ![alt text](<.images/Screenshot 2025-06-03 145410.png>)
 
 # Accessing From Browser 
+- Enable Firewwall rule
+![alt text](.images/image.png)
 
 ![alt text](<.images/Screenshot 2025-06-03 150010.png>)
