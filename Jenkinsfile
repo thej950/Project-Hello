@@ -50,16 +50,28 @@ pipeline {
                 '''
             }
         }
+        stage ('Sleep for 15 Sec') {
+            steps {
+                echo '===========Waiting for 15 seconds======='
+                sleep time: 15, unit: 'SECONDS'
+            }
+        }
         stage ('application deploy into GKE') {
             steps {
                 sh 'kubectl apply -f "$DEPLOYMENT_FILE"'
+            }
+        }
+        stage ('Sleep for 60 Sec') {
+            steps {
+                echo '===========Waiting for 60 seconds======='
+                sleep time: 60, unit: 'SECONDS'
             }
         }
         stage ('Verify pods service IP') {
             steps {
                 sh 'kubectl get nodes'
                 sh 'kubectl get pods && kubectl get svc'
-                sh 'ls -la'
+                
             }
         }
     }
