@@ -52,7 +52,7 @@ pipeline {
         }
         stage ('application deploy into GKE') {
             steps {
-                sh 'kubectl apply -f "$DEPLOYMENT_FILE"'
+                sh 'kubectl apply -f /var/lib/jenkins/workspace/Project-Hello"$DEPLOYMENT_FILE"'
             }
         }
         stage ('Verify pods service IP') {
