@@ -27,8 +27,7 @@
 
 ![alt text](.images/image-9.png)
 
-![alt text](.images/image-10.png)
-
+# From Jenkins Console output 
 ![alt text](.images/image-12.png)
 
 # Accessing From Browser 
