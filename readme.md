@@ -1,5 +1,5 @@
 1. Create a VM machine on GCP Install ansible 
-2. Created a playbook.yml file to install required softwares For Jenkins Setup and Docker, curl, Kubectl tool  
+2. Created a playbook.yml file to install required softwares For Jenkins Setup and Docker, curl, Kubectl,gloud cli, gcloud plugin setup 
 3. Open Firewall Rule 8080 for Jenkins
 4. Create ServiceAccount with Admin Artifactory Registry -> Attach to jenkins VM 
 6. Setup Jenkins web-UI 
@@ -9,7 +9,8 @@
 
 ![alt text](.images/image-1.png)
 
-![alt text](.images/image-2.png)
+![alt text](.images/image-4.png)
+
 
 # webhook Job Trigger
 ![alt text](.images/image-3.png) 
@@ -21,24 +22,21 @@
 
 ![alt text](.images/gcr-image.png)
 
-![alt text](.images/secretkey-json-for-gke.png)
 
 # Cluster Setup Image 
 
-![alt text](.images/image-4.png)
+![alt text](.images/image-9.png)
 
-![alt text](.images/image-5.png)
+![alt text](.images/image-10.png)
 
-![alt text](.images/image-6.png)
-
-![alt text](.images/image-8.png)
-
-![alt text](.images/image-7.png)
-
-![alt text](<.images/Screenshot 2025-06-03 145410.png>)
+![alt text](.images/image-12.png)
 
 # Accessing From Browser 
 - Enable Firewwall rule
+
 ![alt text](.images/image.png)
 
-![alt text](<.images/Screenshot 2025-06-03 150010.png>)
+![alt text](.images/image-13.png)
+
+
+
