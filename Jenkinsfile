@@ -49,11 +49,11 @@ pipeline {
                 '''
             }
         }
-        // stage ('application deploy into GKE') {
-        //     steps {
-        //         sh 'kubectl apply -f deployment.yml'
-        //     }
-        // }
+        stage ('application deploy into GKE') {
+            steps {
+                sh 'kubectl apply -f deployment.yml'
+            }
+        }
         stage ('Verify pods service IP') {
             steps {
                 sh 'kubectl get nodes'
