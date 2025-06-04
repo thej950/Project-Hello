@@ -7,6 +7,7 @@ pipeline {
         IMAGE_NAME = "gcr.io/${GCP_PROJECT_ID}/project-hello" //Image name 
         CLUSTER_NAME = 'hello-project-k8s-cluster' // cluster name 
         CLUSTER_ZONE = 'us-central1-c' // cluster zone 
+        DEPLOYMENT_FILE = 'deployment.yml'
         
     }
     stages {
@@ -51,7 +52,7 @@ pipeline {
         }
         stage ('application deploy into GKE') {
             steps {
-                sh 'kubectl apply -f ./deployment.yml'
+                sh 'kubectl apply -f "$DEPLOYMENT_FILE"'
             }
         }
         stage ('Verify pods service IP') {
