@@ -3,7 +3,6 @@
   hosts: localhost
   become: yes
   connection: local
-
   tasks:
 
   - name: Ensure keyring directories exist
